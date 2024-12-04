@@ -68,7 +68,6 @@ exports.register = (req, res) => {
     }
 
     let jwtSecretKey = process.env.JWT_SECRET_KEY;
-    console.log(moment(req.body.birthday).format());
     const input = {
         email: email,
         password: md5(password),
@@ -92,7 +91,6 @@ exports.register = (req, res) => {
                 admin.create(input)
                     .then(data => {
                         let userid = data.id;
-                        console.log(userid);
                         let dataToken = {
                             time: Date(),
                             userId: userid,

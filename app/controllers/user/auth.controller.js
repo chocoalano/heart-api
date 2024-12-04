@@ -36,13 +36,11 @@ exports.login = (req, res) => {
             });
         } else {
             let userid = data[0].id;
-            // console.log(userid);
             let dataToken = {
                 userId: userid,
                 password: password
             }
             const token = jwt.sign(dataToken, jwtSecretKey);
-            console.log(token);
             const update = {
                 token: token
             }
@@ -95,7 +93,6 @@ exports.register = (req, res) => {
                 user.create(input)
                     .then(data => {
                         let userid = data.id;
-                        console.log(userid);
                         let dataToken = {
                             time: Date(),
                             userId: userid,
@@ -117,7 +114,6 @@ exports.register = (req, res) => {
                             })
     
                     }).catch(err => {
-                        console.log(err)
                         res.status(500).send({
                             code: 500,
                             success: false,
@@ -203,8 +199,6 @@ exports.resetPass = (req, res) => {
         });
         return;
     }
-
-    console.log(birthday);
     var condition = { title: sequelize.where(sequelize.fn('date', sequelize.col('birthday')), '=', birthday), email: email }
 
     user.findAll({ 

@@ -1,0 +1,40 @@
+{
+    "version": "0.2.0",
+    "tasks": [
+        {
+            "label": "kill-port-9092",
+            "type": "shell",
+            "command": "npx kill-port 9092",
+            "problemMatcher": [],
+            "options": {
+                "env": {
+                    "PATH": "${env:PATH}:/usr/local/bin"
+                }
+            }
+        }
+    ],
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "runtimeExecutable": "npx",
+            "runtimeArgs": [
+                "nodemon",
+                "--inspect",
+                "heart-api.js"
+            ],
+            "preLaunchTask": "kill-port-9092",
+            "cwd": "${workspaceFolder}",
+            "restart": true,
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "env": {
+                "PATH": "${env:PATH}:/usr/local/bin"
+            }
+        }
+    ]
+}
